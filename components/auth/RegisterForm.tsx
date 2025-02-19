@@ -26,7 +26,7 @@ import FormError from "@/components/auth/FormError";
 import FormSuccess from "@/components/auth/FormSuccess";
 
 //actions
-import { register } from "@/actions/register";
+import { register } from "@/actions/auth/register";
 const RegisterForm = () => {
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),

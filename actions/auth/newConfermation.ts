@@ -1,10 +1,11 @@
 "use server";
 
-import { getUserByEmail, getVerifacationTokenByToken } from "@/lib/data";
+import { getUserByEmail } from "@/lib/auth/user";
+import { getVerificationTokenByToken } from "@/lib/auth/verificationToken";
 import { db } from "@/lib/db";
 
 export const newVerification = async (token: string) => {
-  const exsistingToken = await getVerifacationTokenByToken(token);
+  const exsistingToken = await getVerificationTokenByToken(token);
   // console.log("token: ", token);
 
   if (!exsistingToken) return { error: "Token Does Not Exist" };

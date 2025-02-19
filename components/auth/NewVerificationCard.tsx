@@ -5,7 +5,7 @@ import CardWrapper from "./CardWrapper";
 import { useSearchParams } from "next/navigation";
 
 import { BeatLoader } from "react-spinners";
-import { newVerification } from "@/actions/newConfermation";
+import { newVerification } from "@/actions/auth/newConfermation";
 import FormError from "./FormError";
 import FormSuccess from "./FormSuccess";
 import { Button } from "../ui/button";
@@ -40,7 +40,9 @@ const NewVerificationCard = () => {
       backButtonHref="/auth/login"
     >
       <div className="flex w-full items-center justify-center">
-        {!error && !success && <Button onClick={onSubmit}>Confirm</Button>}
+        {!error && !success && !isPending && (
+          <Button onClick={onSubmit}>Confirm</Button>
+        )}
 
         {isPending && <BeatLoader />}
         <FormError message={error} />

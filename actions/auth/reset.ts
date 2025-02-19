@@ -1,15 +1,16 @@
 "use server";
 
-import { generatePasswordResetToken } from "@/lib/PasswordToken";
+import { sendPasswordResetEmail } from "@/lib/auth/email";
 import {
+  generatePasswordResetToken,
   getPasswordResetTokenByEmail,
   getPasswordResetTokenByToken,
-  getUserByEmail,
-} from "@/lib/data";
+} from "@/lib/auth/password";
+import { getUserByEmail } from "@/lib/auth/user";
 import { db } from "@/lib/db";
-import { sendPasswordResetEmail } from "@/lib/email";
+
 import { ResetSchema, newPasswordSchema } from "@/schemas";
-import { hash, compare } from "bcryptjs";
+import { hash } from "bcryptjs";
 import { z } from "zod";
 
 export const sendReset = async (formData: z.infer<typeof ResetSchema>) => {

@@ -7,13 +7,19 @@
 export const publicRoutes: string[] = ["/"];
 
 /**
+ * Login page
+ * @type {string}
+ */
+
+export const LOGIN_PAGE: string = "/auth/login";
+/**
  * An Array of routes used for authentication
  * These routes will redirect logged in users to /settings
  * @type {string[]}
  */
 
 export const authRoutes: string[] = [
-  "/auth/login",
+  LOGIN_PAGE,
   "/auth/register",
   "/auth/error",
   "/auth/new-verification",
@@ -33,5 +39,5 @@ export const apiAuthPrefix: string = "/api/auth";
  * the default  redirect path after logging in
  * @type {string}
  */
-
+export const HomePage: string = "/";
 export const DEFAULT_LOGIN_REDIRECT: string = "/settings";

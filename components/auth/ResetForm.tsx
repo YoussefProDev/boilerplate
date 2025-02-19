@@ -16,7 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { ResetSchema } from "@/schemas";
 import { Button } from "../ui/button";
-import { sendReset } from "@/actions/reset";
+import { sendReset } from "@/actions/auth/reset";
 import FormError from "./FormError";
 import FormSuccess from "./FormSuccess";
 const ResetForm = () => {

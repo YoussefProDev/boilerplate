@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 
 const SettingsPage = async () => {
   const session = await auth();
+  session?.user.role;
   return (
     <div className="h-screen">
       {JSON.stringify(session)}

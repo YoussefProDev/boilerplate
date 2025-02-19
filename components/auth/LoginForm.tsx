@@ -16,7 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { LoginSchema } from "@/schemas";
 import { Button } from "../ui/button";
-import { login } from "@/actions/login";
+import { login } from "@/actions/auth/login";
 import FormError from "./FormError";
 import FormSuccess from "./FormSuccess";
 import { useSearchParams } from "next/navigation";

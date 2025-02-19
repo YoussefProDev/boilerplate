@@ -4,9 +4,12 @@ import { z } from "zod";
 import { signIn } from "@/auth";
 import { DEFAULT_LOGIN_REDIRECT } from "@/route";
 import { AuthError } from "next-auth";
-import { getUserByEmail, getVerifacationTokenByEmail } from "@/lib/data";
-import { generateVerifacationToken } from "@/lib/tokens";
-import { sendVerifacationEmail } from "@/lib/email";
+import { getUserByEmail } from "@/lib/auth/user";
+import {
+  generateVerificationToken,
+  getVerificationTokenByEmail,
+} from "@/lib/auth/verificationToken";
+import { sendVerifacationEmail } from "@/lib/auth/email";
 import { compare } from "bcryptjs";
 export const login = async (formData: z.infer<typeof LoginSchema>) => {
   const validatedFields = LoginSchema.safeParse(formData);
@@ -23,10 +26,10 @@ export const login = async (formData: z.infer<typeof LoginSchema>) => {
   if (!existingUser.password) {
     return { error: "Email already in use with different provider!" };
   }
-  const existingToken = await getVerifacationTokenByEmail(email);
+  const existingToken = await getVerificationTokenByEmail(email);
 
   if (!existingUser.emailVerified && !existingToken) {
-    const verifacationToken = await generateVerifacationToken(
+    const verifacationToken = await generateVerificationToken(
       existingUser.email
     );
     if (existingUser.name && existingUser.email && verifacationToken.token) {
